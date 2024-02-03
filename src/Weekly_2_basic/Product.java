@@ -1,4 +1,4 @@
-package Weekly_2;
+package Weekly_2_basic;
 
 public class Product implements DeliveryChargeCalculator {
     private String name;

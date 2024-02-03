@@ -1,4 +1,7 @@
-package Weekly_2;
+import Weekly_2_basic.Beauty;
+import Weekly_2_basic.Grocery;
+import Weekly_2_basic.LargeAppliance;
+import Weekly_2_basic.Product;
 
 public class Main {
     public static void main(String[] args) {
