@@ -30,14 +30,19 @@ public class Product implements DeliveryChargeCalculator {
 
         BigDecimal charge;
 
-        if (weight < 3 && weight>=0) charge = BigDecimal.valueOf(1000);
-        else if(weight>=3 && weight<10) charge= BigDecimal.valueOf(5000);
-        else charge = BigDecimal.valueOf(10000);
+        if (weight < NumConstants.MINIMUM_WEIGHT && weight>=0)
+            charge = BigDecimal.valueOf(NumConstants.MINIMUM_WEIGHT_FEE);
+        else if(weight>=NumConstants.MINIMUM_WEIGHT && weight<NumConstants.MAXIMUM_WEIGHT)
+            charge= BigDecimal.valueOf(NumConstants.MIDDLE_WEIGHT_FEE);
+        else charge = BigDecimal.valueOf(NumConstants.MAXIMUM_WEIGHT_FEE);
 
 
-        if(price.compareTo(BigDecimal.valueOf(30000)) < 0 && price.compareTo(BigDecimal.valueOf(0))>=0) return charge;
-        else if(price.compareTo(BigDecimal.valueOf(3000))>=0
-                && price.compareTo(BigDecimal.valueOf(100000))<0) return charge.subtract(BigDecimal.valueOf(1000));
+        if(price.compareTo(BigDecimal.valueOf(NumConstants.DELIVERY_DISCOUNT_PROD_PRICE)) < 0
+                && price.compareTo(BigDecimal.ZERO)>=0)
+            return charge;
+        else if(price.compareTo(BigDecimal.valueOf(NumConstants.DELIVERY_DISCOUNT_PROD_PRICE))>=0
+                && price.compareTo(BigDecimal.valueOf(NumConstants.DELIVERY_FREE_PROD_PRICE))<0)
+            return charge.subtract(BigDecimal.valueOf(NumConstants.DELIVERY_DISCOUNT_FEE));
         else return BigDecimal.ZERO;
     }
 }
