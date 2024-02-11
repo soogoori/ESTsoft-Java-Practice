@@ -1,10 +1,10 @@
 package Weekly_2_basic;
 
-public class Product implements DeliveryChargeCalculator {
+public class Product implements DeliveryChargeCalculator, Promotion {
     private String name;
     private int price;
     private Double weight;
-
+    private int discountPrice;
     public Product(String name, int price, Double weight) {
         this.name = name;
         this.price = price;
@@ -34,5 +34,10 @@ public class Product implements DeliveryChargeCalculator {
         if(price<30000 && price>=0) return charge;
         else if(price>=30000 && price<100000) return charge-1000;
         else return 0;
+    }
+
+    @Override
+    public int getDiscountAmount() {
+        return 0;
     }
 }
